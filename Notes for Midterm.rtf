@@ -1,0 +1,177 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 public class HashTable \{\
+\
+\'a0\'a0 public class LinkedListNode \{\
+\'a0 \'a0 \'a0 private String key;\
+\'a0 \'a0 \'a0 private String value;\
+\'a0 \'a0 \'a0 private LinkedListNode next;\
+\'a0\'a0 \}\
+\
+\'a0\'a0 // The hash CharsHashTable, represented as an array of linked lists.\
+\'a0\'a0 public LinkedListNode[] CharsHashTable;\
+\
+\'a0\'a0 // The number of (key,value) pairs in the hash CharsHashTable.\
+\'a0\'a0 private int count;\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Create a hash CharsHashTable with an initial size of 149 or any prime...\
+\'a0 \'a0 */\
+\'a0\'a0 public HashTable() \{\
+\'a0 \'a0 \'a0 CharsHashTable = new LinkedListNode[149];\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Create a hash CharsHashTable with a specified initial size.\
+\'a0 \'a0 * Precondition: initalSize > 0.\
+\'a0 \'a0 */\
+\'a0\'a0 public HashTable(int initialSize) \{\
+\'a0 \'a0 \'a0 if (initialSize <= 0)\
+\'a0\'a0 \'a0 \'a0 \'a0 throw new IllegalArgumentException("Illegal CharsHashTable size");\
+\'a0 \'a0 \'a0 CharsHashTable = new LinkedListNode[initialSize];\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Associate the specified value with the specified key.\
+\'a0 \'a0 * Precondition:\'a0 The key is not null.\
+\'a0 \'a0 */\
+\'a0\'a0 public void put(String key, String value) \{\
+\
+\'a0 \'a0 \'a0 assert key != null : "The key must be non-null";\
+\
+\'a0 \'a0 \'a0 int bucket = hash(key); // Which location should this key be in?\
+\
+\'a0 \'a0 \'a0 LinkedListNode list = CharsHashTable[bucket];\
+\'a0 \'a0 \'a0 while (list != null) \{\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Search the nodes in the list, to see if the key already exists.\
+\'a0\'a0 \'a0 \'a0 \'a0 if (list.key.equals(key))\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 break;\
+\'a0\'a0 \'a0 \'a0 \'a0 list = list.next;\
+\'a0 \'a0 \'a0 \}\
+\
+\'a0 \'a0 \'a0 // At this point, either list is null, or list.key.equals(key).\
+\
+\'a0 \'a0 \'a0 if (list != null) \{\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Since list is not null, we have found the key. Just change the associated value.\
+\'a0\'a0 \'a0 \'a0 \'a0 list.value = value;\
+\'a0 \'a0 \'a0 \}\
+\'a0 \'a0 \'a0 else \{\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Since list == null, the key is not already in the list. Add a new node at the head of the list to contain the new key and its associated value.\
+\'a0\'a0 \'a0 \'a0 \'a0 if (count >= 0.75*CharsHashTable.length) \{\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // The CharsHashTable is becoming too full.\'a0 Increase its size before adding the new node.\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 resize();\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 bucket = hash(key);\'a0 // Recompute hash code, since it depends on the CharsHashTable size.\
+\'a0\'a0 \'a0 \'a0 \'a0 \}\
+\'a0\'a0 \'a0 \'a0 \'a0 LinkedListNode newNode = new LinkedListNode();\
+\'a0\'a0 \'a0 \'a0 \'a0 newNode.key = key;\
+\'a0\'a0 \'a0 \'a0 \'a0 newNode.value = value;\
+\'a0\'a0 \'a0 \'a0 \'a0 newNode.next = CharsHashTable[bucket];\
+\'a0\'a0 \'a0 \'a0 \'a0 CharsHashTable[bucket] = newNode;\
+\'a0\'a0 \'a0 \'a0 \'a0 count++;\'a0 // Count the newly added key.\
+\'a0 \'a0 \'a0 \}\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Retrieve the value associated with the specified key in the CharsHashTable,\
+\'a0 \'a0 * if there is any.\'a0 If not, the value null will be returned.\
+\'a0 \'a0 * @param key The key whose associated value we want to find\
+\'a0 \'a0 * @return the associated value, or null if there is no associated value\
+\'a0 \'a0 */\
+\'a0\'a0 public String get(String key) \{\
+\
+\'a0 \'a0 \'a0 int bucket = hash(key);\'a0 // At what location should the key be?\
+\
+\'a0 \'a0 \'a0 LinkedListNode list = CharsHashTable[bucket];\'a0 // For traversing the list.\
+\'a0 \'a0 \'a0 while (list != null) \{\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Check if the specified key is in the node that\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // list points to.\'a0 If so, return the associated value.\
+\'a0\'a0 \'a0 \'a0 \'a0 if (list.key.equals(key))\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 return list.value;\
+\'a0\'a0 \'a0 \'a0 \'a0 list = list.next;\'a0 // Move on to next node in the list.\
+\'a0 \'a0 \'a0 \}\
+\
+\'a0 \'a0 \'a0 // If we get to this point, then we have looked at every\
+\'a0 \'a0 \'a0 // node in the list without finding the key.\'a0 Return\
+\'a0 \'a0 \'a0 // the value null to indicate that the key is not in the CharsHashTable.\
+\
+\'a0 \'a0 \'a0 return null;\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Test whether the specified key has an associated value in the CharsHashTable.\
+\'a0 \'a0 * @param key The key that we want to search for.\
+\'a0 \'a0 * @return true if the key exists in the CharsHashTable, false if not\
+\'a0 \'a0 */\
+\'a0\'a0 //ALSO GOT ONLINE\
+\'a0\'a0 public boolean containsKey(String key) \{\
+\
+\'a0 \'a0 \'a0 int bucket = hash(key);\'a0 // In what location should key be?\
+\
+\'a0 \'a0 \'a0 LinkedListNode list = CharsHashTable[bucket];\'a0 // For traversing the list.\
+\'a0 \'a0 \'a0 while (list != null) \{\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // If we find the key in this node, return true.\
+\'a0\'a0 \'a0 \'a0 \'a0 if (list.key.equals(key))\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 return true;\
+\'a0\'a0 \'a0 \'a0 \'a0 list = list.next;\
+\'a0 \'a0 \'a0 \}\
+\
+\'a0 \'a0 \'a0 // If we get to this point, we know that the key does\
+\'a0 \'a0 \'a0 // not exist in the CharsHashTable.\
+\
+\'a0 \'a0 \'a0 return false;\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Return the number of key/value pairs in the CharsHashTable.\
+\'a0 \'a0 */\
+\'a0\'a0 public int size() \{\
+\'a0 \'a0 \'a0 return count;\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Compute a hash code for the key; key cannot be null.\
+\'a0 \'a0 * The hash code depends on the size of the CharsHashTable as\
+\'a0 \'a0 * well as on the value returned by key.hashCode().\
+\'a0 \'a0 */\
+\'a0\'a0 private int hash(Object key) \{\
+\'a0 \'a0 \'a0 return (Math.abs(key.hashCode())) % CharsHashTable.length;\
+\'a0\'a0 \}\
+\
+\'a0\'a0 /**\
+\'a0 \'a0 * Double the size of the CharsHashTable, and redistribute the\
+\'a0 \'a0 * key/value pairs to their proper locations in the\
+\'a0 \'a0 * new CharsHashTable.\
+\'a0 \'a0 */\
+\'a0\'a0 //THIS I GOT ONLINE AND IT WILL RESIZE THE HASH TABLE WHEN IT IS 3/4 FULL.\
+\'a0\'a0 private void resize() \{\
+\'a0 \'a0 \'a0 LinkedListNode[] newCharsHashTable = new LinkedListNode[CharsHashTable.length*2];\
+\'a0 \'a0 \'a0 for (int i = 0; i < CharsHashTable.length; i++) \{\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Move all the nodes in linked list number i into the new CharsHashTable.\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // No new LinkedListNodes are created.\'a0 The existing LinkedListNode for each\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // key/value pair is moved to the newCharsHashTable.\'a0 This is done by\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // changing the "next" pointer in the node and by making a pointer\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // in the new CharsHashTable point to the node.\
+\'a0\'a0 \'a0 \'a0 \'a0 LinkedListNode list = CharsHashTable[i]; // For traversing linked list number i.\
+\'a0\'a0 \'a0 \'a0 \'a0 while (list != null) \{\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Move the node pointed to by list to the new CharsHashTable.\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LinkedListNode next = list.next;\'a0 // The is the next node in the list.\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // Remember it, before changing the value of list!\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 int hash = (Math.abs(list.key.hashCode())) % newCharsHashTable.length;\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // hash is the hash code of list.key that is\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // appropriate for the new CharsHashTable size.\'a0 The\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // next two lines add the node pointed to by list\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // onto the head of the linked list in the new CharsHashTable\
+\'a0\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 // at position number hash.\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 list.next = newCharsHashTable[hash];\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 newCharsHashTable[hash] = list;\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 list = next;\'a0 // Move on to the next node in the OLD CharsHashTable.\
+\'a0\'a0 \'a0 \'a0 \'a0 \}\
+\'a0 \'a0 \'a0 \}\
+\'a0 \'a0 \'a0 CharsHashTable = newCharsHashTable;\'a0 // Replace the CharsHashTable with the new CharsHashTable.\
+\'a0\'a0 \}\
+\}}

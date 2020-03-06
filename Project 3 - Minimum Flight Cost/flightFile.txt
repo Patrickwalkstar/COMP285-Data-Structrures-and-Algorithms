@@ -1,0 +1,9 @@
+Chicago, Albuquerque, 508
+Albuquerque, Chicago, 250
+Chicago, Los Angeles, 230
+Los Angeles, San Diego, 80
+Chicago, San Diego, 325
+Palo Alto, Jamestown, 299
+Singapore, Saudi Arabia, 1000
+Los Angeles, Saudi Arabia, 22
+Jamestown, Singapore, 888

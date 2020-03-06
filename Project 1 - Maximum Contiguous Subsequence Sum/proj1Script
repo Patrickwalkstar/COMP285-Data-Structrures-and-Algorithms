@@ -1,0 +1,308 @@
+Last login: Tue Feb 20 14:34:36 on ttys003
+Patricks-MacBook-Pro-3:~ patrickwalker$ ssh pwalker@cslab1.sandiego.edu
+===============================================================================
+                      SERRA-163 LAB - INSTRUCTION TO READ 
+===============================================================================
+ 
+ 1. Please use your standard USDOne account. Only participants in a class will
+    have access.
+ 2. If you need access to this computer, please see your professor
+ 3. Please use lab workstations only if you are authorized.
+ 4. Your home directory has limited space, so please use it only for academic
+    purposes.
+ 
+===============================================================================
+pwalker@cslab1.sandiego.edu's password: 
+Permission denied, please try again.
+pwalker@cslab1.sandiego.edu's password: 
+Last failed login: Sun Feb 25 21:14:21 PST 2018 from 172.17.17.197 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Tue Feb 20 14:36:03 2018 from 172.17.17.197
+Welcome to the CS Lab in Serra Hall 163!
+You are using cslab1.sandiego.edu
+[pwalker@cslab1 ~]$ ls
+1.jpeg  COMP285  file  inClassExs  Scan
+[pwalker@cslab1 ~]$ cd COMP285
+[pwalker@cslab1 COMP285]$ pwd
+/homes/pwalker/COMP285
+[pwalker@cslab1 COMP285]$ ls
+[pwalker@cslab1 COMP285]$ nano proj1.java
+[pwalker@cslab1 COMP285]$ ls
+proj1.java
+[pwalker@cslab1 COMP285]$ rm proj1.java
+[pwalker@cslab1 COMP285]$ ls
+[pwalker@cslab1 COMP285]$ cd ..
+[pwalker@cslab1 ~]$ pwd
+/homes/pwalker
+[pwalker@cslab1 ~]$ ls
+1.jpeg  COMP285  file  inClassExs  Scan
+[pwalker@cslab1 ~]$ cd COMP285
+[pwalker@cslab1 COMP285]$ ls
+[pwalker@cslab1 COMP285]$ mkdir proj1
+[pwalker@cslab1 COMP285]$ ls
+proj1
+[pwalker@cslab1 COMP285]$ mkdir proj2
+[pwalker@cslab1 COMP285]$ mkdir proj3
+[pwalker@cslab1 COMP285]$ ls
+proj1  proj2  proj3
+[pwalker@cslab1 COMP285]$ cd proj1
+[pwalker@cslab1 proj1]$ nano proj1.java
+[pwalker@cslab1 proj1]$ javac proj1.java
+[pwalker@cslab1 proj1]$ ls
+proj1.class  proj1.java
+[pwalker@cslab1 proj1]$ nano testText.txt
+[pwalker@cslab1 proj1]$ ls
+proj1.class  proj1.java  testText.txt
+[pwalker@cslab1 proj1]$ ls -lh
+total 32K
+-rw-r-----+ 1 pwalker ldapstudent 3.4K Feb 25 21:20 proj1.class
+-rw-r-----+ 1 pwalker ldapstudent 7.3K Feb 25 21:20 proj1.java
+-rw-r-----+ 1 pwalker ldapstudent  17K Feb 25 21:21 testText.txt
+[pwalker@cslab1 proj1]$ java proj1
+Enter the file name you wish to read from: 
+testText.txt
+The duration of the first algorithm is: 3771548474 nano seconds
+The duration of the second algorithm is: 7704573 nano seconds
+The duration of the third algorithm is: 71701 nano seconds
+The duration of the fourth algorithm is: 123 nano seconds
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+1
+The duration of the first algorithm is: 16171655841 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+4
+The duration of the fourth algorithm is: 488 nano seconds
+
+Do you want to run the program again? (Type y or n)
+n
+[pwalker@cslab1 proj1]$ cd COMP285
+-bash: cd: COMP285: No such file or directory
+[pwalker@cslab1 proj1]$ cd ..
+[pwalker@cslab1 COMP285]$ cd proj1
+[pwalker@cslab1 proj1]$ ls
+proj1.class  proj1.java  testText.txt
+[pwalker@cslab1 proj1]$ script proj1
+Script started, file is proj1
+[pwalker@cslab1 proj1]$ java proj1
+Enter the file name you wish to read from: 
+testText.txt
+The duration of the first algorithm is: 4574724040 nano seconds
+The duration of the second algorithm is: 8343817 nano seconds
+The duration of the third algorithm is: 72037 nano seconds
+The duration of the fourth algorithm is: 77 nano seconds
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+1
+The duration of the first algorithm is: 16076089108 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+2
+The duration of the second algorithm is: 2305553 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+3
+The duration of the third algorithm is: 89662 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+4
+The duration of the fourth algorithm is: 180 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+1
+The duration of the first algorithm is: 2242644269 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+2
+The duration of the second algorithm is: 2239957 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+3
+The duration of the third algorithm is: 82175 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+4
+The duration of the fourth algorithm is: 250 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+1
+The duration of the first algorithm is: 2244770320 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms: 
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run: 
+2
+The duration of the second algorithm is: 14153754 nano seconds
+
+Do you want to run the program again? (Type y or n)
+3
+[pwalker@cslab1 proj1]$ 4
+bash: 4: command not found...
+[pwalker@cslab1 proj1]$ exit
+exit
+Script done, file is proj1
+[pwalker@cslab1 proj1]$ ls
+proj1  proj1.class  proj1.java  testText.txt
+[pwalker@cslab1 proj1]$ nano proj1
+[pwalker@cslab1 proj1]$ nano proj1
+
+  GNU nano 2.3.1                                                                       File: proj1                                                                                                                                                    
+
+Script started on Sun 25 Feb 2018 09:27:50 PM PST
+^[]0;pwalker@cslab1:~/COMP285/proj1^G^[[?1034h[pwalker@cslab1 proj1]$ javv^H^[[Ka proj1
+Enter the file name you wish to read from:
+testText.txt
+The duration of the first algorithm is: 4574724040 nano seconds
+The duration of the second algorithm is: 8343817 nano seconds
+The duration of the third algorithm is: 72037 nano seconds
+The duration of the fourth algorithm is: 77 nano seconds
+
+Algorithms:
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run:
+1
+The duration of the first algorithm is: 16076089108 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms:
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run:
+2
+The duration of the second algorithm is: 2305553 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms:
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run:
+3
+The duration of the third algorithm is: 89662 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms:
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run:
+4
+The duration of the fourth algorithm is: 180 nano seconds
+
+Do you want to run the program again? (Type y or n)
+y
+
+Algorithms:
+1) Algorithm 1
+2) Algorithm 2
+3) Algorithm 3
+4) Algorithm 4
+Choose a number to run:
+1
+The duration of the first algorithm is: 2242644269 nano seconds
+
+Do you want to run the program again? (Type y or n)
+                                                                                                                  [ Read 134 lines ]
+^G Get Help                              ^O WriteOut                              ^R Read File                             ^Y Prev Page                             ^K Cut Text                              ^C Cur Pos
+^X Exit                                  ^J Justify                               ^W Where Is                              ^V Next Page                             ^U UnCut Text                            ^T To Spell
